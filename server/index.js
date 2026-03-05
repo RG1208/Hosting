@@ -4,7 +4,15 @@ import cors from "cors"
 const app = express()
 
 app.use(express.json())
-app.use(cors())
+app.use(cors(
+    {origin:[
+        "http://localhost:3000",
+        "http://localhost:5173",
+        "http://localhost:5174"],
+        credentials:true,
+        allowedHeaders:["Content-Type", "Authorization"]
+    }
+))
 
 app.get("/api/message", (req, res) => {
     res.json({message:"Hello from server!"})
